@@ -7,27 +7,25 @@ import json
 
 
 # LLM imports 
-from langchain.indexes import VectorstoreIndexCreator
-from langchain.document_loaders import UnstructuredFileLoader
 import os
-os.environ['OPENAI_API_KEY'] = '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'
+import openai
+from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
+os.environ['OPENAI_API_KEY'] = "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"
+openai.api_key = "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"
 
-loader = UnstructuredFileLoader('training_data/MA - Meeting Notes.pdf') #CHANGE THIS TO MATCH FILE NAME
-index = VectorstoreIndexCreator().from_loaders([loader])
-docs = loader.load()
-
-# decode LLM output
-def decode_output(output_str):
-    # Encode the output string to interpret escape sequences
-    encoded_str = output_str.encode().decode('unicode_escape')
-    return encoded_str
+documents = SimpleDirectoryReader('./mysite/training_data').load_data()
+index = GPTVectorStoreIndex(documents)
+query_engine = index.as_query_engine()
 
 # access the LLM, passing in the user input
 def process_input(input):
     # do some processing here
-    ret = decode_output(index.query(input))
+    ret = (query_engine.query(input))
     return ret 
+
+
+
 
 # @ensure_csrf_cookie
 @csrf_exempt
@@ -38,10 +36,24 @@ def post(request: HttpRequest):
     chat_prompt = body_data.get('chat_prompt')
 
     # logic to handle LLM processing goes here in a function call like this:
-    processed_data = (chat_prompt)
+    processed_data = process_input(chat_prompt)
+    # processed_data = decode_output(str(processed_data))
 
     data = {
-        "processed_data": processed_data,
+        "processed_data": str(processed_data),
     }
 
     return JsonResponse(data)
+
+
+
+
+
+
+
+
+# decode LLM output
+def decode_output(output_str):
+    # Encode the output string to interpret escape sequences
+    encoded_str = output_str.encode().decode('unicode_escape')
+    return encoded_str
