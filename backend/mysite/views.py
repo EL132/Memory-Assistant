@@ -11,17 +11,18 @@ import os
 import openai
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
-os.environ['OPENAI_API_KEY'] = "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"
-openai.api_key = "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"
+# os.environ['OPENAI_API_KEY'] = "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"
+# openai.api_key = "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"
 
-documents = SimpleDirectoryReader('./mysite/training_data').load_data()
-index = GPTVectorStoreIndex(documents)
-query_engine = index.as_query_engine()
+# documents = SimpleDirectoryReader('./mysite/training_data').load_data()
+# index = GPTVectorStoreIndex(documents)
+# query_engine = index.as_query_engine()
 
 # access the LLM, passing in the user input
 def process_input(input):
     # do some processing here
-    ret = (query_engine.query(input))
+    # ret = (query_engine.query(input))
+    ret = input + " testing without LLM query engine"
     return ret 
 
 
@@ -43,6 +44,7 @@ def post(request: HttpRequest):
         "processed_data": str(processed_data),
     }
 
+    print(processed_data)
     return JsonResponse(data)
 
 
