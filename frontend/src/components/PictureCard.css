@@ -1,0 +1,39 @@
+/* Customize the picture card layout here */
+.picture-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.picture-card img {
+width: 100%;
+max-height: 200px;
+object-fit: cover;
+border-radius: 5px;
+}
+
+.image-details {
+margin-top: 10px;
+}
+
+.image-details h3 {
+margin: 0;
+font-size: 16px;
+font-weight: bold;
+}
+
+.image-details ul {
+list-style: none;
+padding: 0;
+margin-top: 5px;
+}
+
+.image-details li {
+display: inline-block;
+margin-right: 5px;
+padding: 3px 5px;
+background-color: #f2f2f2;
+border-radius: 3px;
+font-size: 12px;
+}
