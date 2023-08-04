@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import axios
+
 import PictureCard from './PictureCard.js';
 import './PictureGallery.css';
 
@@ -9,9 +11,9 @@ const PictureGallery = () => {
         // Fetch the pictures from your backend and update the state
         const fetchPictures = async () => {
             try {
-                const response = await fetch('/api/pictures'); // Replace '/api/pictures' with the appropriate API endpoint to fetch pictures from your backend
-                const data = await response.json();
-                setPictures(data);
+                const requestBody = { name: 'grape' }; // Replace 'grape' with the name you want to query
+                const response = await axios.post('localhost:8080/get', requestBody); // Make a POST request with axios
+                setPictures(response.data);
             } catch (error) {
                 console.error('Error fetching pictures:', error);
             }

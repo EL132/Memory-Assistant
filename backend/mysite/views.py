@@ -14,15 +14,15 @@ import openai
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
 
-# documents = SimpleDirectoryReader('./mysite/training_data').load_data()
-# index = GPTVectorStoreIndex(documents)
-# query_engine = index.as_query_engine()
+documents = SimpleDirectoryReader('./mysite/training_data').load_data()
+index = GPTVectorStoreIndex(documents)
+query_engine = index.as_query_engine()
 
 # access the LLM, passing in the user input
 def process_input(input):
     # do some processing here
-    # ret = (query_engine.query(input))
-    ret = input + " testing without LLM query engine"
+    ret = (query_engine.query(input))
+    # ret = input + " testing without LLM query engine"
     return ret 
 
 
@@ -30,20 +30,17 @@ def process_input(input):
 # get function for the images for the React frontend
 @csrf_exempt
 def get(request: HttpRequest):
-    print(os.getenv('MONGO_STRING'))
-    print(os.getenv('AWS_ACCESS_KEY_ID'))
-    print(os.getenv('AWS'))
-    # if request.method == 'POST':
-    #     # Get the 'name' parameter from the request body
-    #     body_data = json.loads(request.body.decode('utf-8'))
-    #     name = body_data.get('name', None)
+    if request.method == 'POST':
+        # Get the 'name' parameter from the request body
+        body_data = json.loads(request.body.decode('utf-8'))
+        name = body_data.get('name', None)
 
-    #     # Initialize the utility class
-    #     utility = Utils()
+        # Initialize the utility class
+        utility = Utils()
 
-    #     return JsonResponse(utility.get_s3_and_tags(name), safe=False)
+        return JsonResponse(utility.get_s3_and_tags(name), safe=False)
 
-    # return JsonResponse({"error": "Invalid request method. Use POST."})
+    return JsonResponse({"error": "Invalid request method. Use POST."})
 
 @csrf_exempt
 def getTags(request: HttpRequest):
