@@ -13,7 +13,7 @@ import os
 import openai
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
-
+openai.api_key = os.getenv("OPENAI_API_KEY") # THIS DOES NOT WORK
 documents = SimpleDirectoryReader('./mysite/training_data').load_data()
 index = GPTVectorStoreIndex(documents)
 query_engine = index.as_query_engine()
@@ -21,9 +21,14 @@ query_engine = index.as_query_engine()
 # access the LLM, passing in the user input
 def process_input(input):
     # do some processing here
-    ret = (query_engine.query(input))
+    ret = (query_engine.query(input + " In addition, please also print out which of the following topics this question falls under:\
+            Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps." + 
+            " You can print out more than one topic if the question falls under more than one of the mentioned topics. " + 
+            "Please also print out the name or names of the files that you used to come up with your response." + 
+            "For the topic of the question and the name or names of relevant files, please start those responses with a $ and separate the two responses with a $."))
     # ret = input + " testing without LLM query engine"
-    return ret 
+    return ret
+
 
 
 
