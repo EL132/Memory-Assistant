@@ -36,6 +36,29 @@ def process_input(input):
     # ret = input + " testing without LLM query engine"
     return ret
 
+def identify_topics(response: str) -> list[str]:
+    topics_index = response.index("Topic(s):")
+    topics_string = response[topics_index + 10:] 
+    topics_list = topics_string.split(', ')
+    return topics_list # example output: ["Hashmaps", "Trees"]
+
+def identify_files(response: str) -> list[str]:
+    files_index = response.index("File(s):")
+    files_string = response[files_index + 9: response.index("Topic(s):") - 1] 
+    files_list = files_string.split(', ')
+    return files_list # example output: ['Hashmap_notes.pdf']
+
+# Use the following to test the above two methods if needed
+# print(identify_files("\nAnswer: The main difference between trees and hashmaps is that trees have a time complexity of O(logn) for searching,\
+#                      inserting, and deleting elements, while hashmaps have a time complexity of O(1) for the same operations. Hashmaps are better\
+#                      to use for accessing things in constant O(n) time.\n\nFile(s): Hashmap_notes.pdf\nTopic(s): Hashmaps, Trees"))
+
+# decode LLM output
+def decode_output(output_str):
+    # Encode the output string to interpret escape sequences
+    encoded_str = output_str.encode().decode('unicode_escape')
+    return encoded_str
+
 #-----------------------------------------------------------API Requests----------------------------------------------------------------------
 
 # get function for the images for the React frontend
