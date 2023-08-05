@@ -13,7 +13,7 @@ import os
 import openai
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY") # THIS DOES NOT WORK
 documents = SimpleDirectoryReader('./mysite/training_data').load_data()
 index = GPTVectorStoreIndex(documents)
 query_engine = index.as_query_engine()
