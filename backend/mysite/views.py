@@ -20,6 +20,7 @@ index = GPTVectorStoreIndex(documents)
 query_engine = index.as_query_engine()
 topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps"
 
+
 # access the LLM, passing in the user input
 def process_input(input):
     # do some processing here

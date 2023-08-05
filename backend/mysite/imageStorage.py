@@ -35,9 +35,13 @@ class Utils:
     # returns json objects of images that contain the tags specified in the parameters
     def get_matching_tags(self, tags: list[str]):
         query = self.records.find({"tags": {"$in": tags}})
+
         rtn = []
         for item in query:
+            # Convert the '_id' field to a string
+            item['_id'] = str(item['_id'])
             rtn.append(item)
+        print(rtn)
         return rtn
 
     #----------------------------------------------------Image Storage------------------------------------------------------
