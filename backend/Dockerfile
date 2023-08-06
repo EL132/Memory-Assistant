@@ -18,4 +18,4 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Use Gunicorn for production
-CMD ["gunicorn", "mysite.wsgi:appl
+CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8000"]
