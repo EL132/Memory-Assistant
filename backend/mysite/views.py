@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 # from django.views.decorators.csrf import ensure_csrf_cookie
 import json
 from pymongo import MongoClient
-from imageStorage import Utils
+from .imageStorage import Utils
 
 
 # LLM imports 
