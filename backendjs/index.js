@@ -8,34 +8,6 @@ const port = 8000;
 
 app.use(bodyParser.json());
 
-// LLM setup
-const topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps";
-
-// access the LLM, passing in the user input
-function processInput(input) {
-    // do some processing here
-    // ret = (query_engine.query(input))
-    const ret = input + `In addition, please also print out which of the following topics this question falls under: ${topics}. You should print out more than one topic if the question falls under more than one of the mentioned topics. You must also print out the name or names of the files that you used to come up with your response. If no source files can be identified, then say 'No Source File Identified'. You should print out more than one file name if the answer you came up with pulled information from more than one file. For the topic of the question, please start that response with 'Topic(s):' and return the topic or topics separated by commas. For example, 'heaps, trees, stacks' or 'Queues' would both be valid responses to have after 'Topic(s):'. For the name or names of relevant files, please start that response with 'File(s)' and follow the same comma separated approach as for 'Topic(s):'. Put the response to the question first, then the 'File(s)', and finally the 'Topic(s)'.`;
-    return ret;
-}
-
-// Identify topics from the LLM response
-function identifyTopics(response) {
-    const topicsIndex = response.indexOf("Topic(s):");
-    const topicsString = response.slice(topicsIndex + 10);
-    const topicsList = topicsString.split(', ');
-    return topicsList;
-}
-
-// Identify files from the LLM response
-function identifyFiles(response) {
-    const filesIndex = response.indexOf("File(s):");
-    const filesString = response.slice(filesIndex + 9, response.indexOf("Topic(s):") - 1);
-    const filesList = filesString.split(', ');
-    return filesList;
-}
-
-// API Requests
 
 // get function for the images for the React frontend
 app.post('/get', async (req, res) => {
