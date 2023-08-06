@@ -1,14 +1,21 @@
-# Use the official Python image as the base image
-FROM python:3.8
+# Use a specific Python base image
+FROM python:3.8-slim
 
 # Set the working directory in the container
 WORKDIR /backend
 
-# Copy the application files into the working directory
+# Copy the entire Django project into the working directory
 COPY . /backend
 
-# Install the application dependencies
-RUN pip install -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends gcc
 
-# Define the entry point for the container
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Set the environment variable for the virtual environment path
+ENV VIRTUAL_ENV="/MemAssist-E"
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Use the existing virtual environment and install the application dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Use Gunicorn for production
+CMD ["gunicorn", "mysite.wsgi:application", "--bind", "0.0.0.0:8000"]
