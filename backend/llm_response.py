@@ -4,8 +4,8 @@ import os, sys
 import openai
 from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
 
-openai.api_key = "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"
-#openai.api_key = os.getenv("OPENAI_API_KEY") # THIS DOES NOT WORK
+#openai.api_key = ""
+openai.api_key = os.getenv("OPENAI_API_KEY") # THIS DOES NOT WORK
 
 documents = SimpleDirectoryReader('../backend/mysite/training_data').load_data()
 
