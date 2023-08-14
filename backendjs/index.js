@@ -63,29 +63,31 @@ app.post('/llm', async (req, res) => {
 
 function retrieveByTags(input) {
     return new Promise((resolve, reject) => {
-        console.log("inside retrieveTags function");
+        console.log(input)
     
-        const pythonProcess = spawn('python', ['../backend/retrieveByTags.py', input]);
+        const pythonProcess = spawn('python', ['../backend/retrieveByTags.py', JSON.stringify(input)]);
     
         let result = '';
     
         pythonProcess.stdout.on('data', (data) => {
+            console.log("--------------------------------------------------------------------------------")
             console.log(`Python stdout: ${data}`);
-            // let messageObject = JSON.parse(data);
-            // console.log(messageObject.message);
+            console.log("--------------------------------------------------------------------------------")
+
             result += data.toString();
         });
-    
+
         pythonProcess.stderr.on('data', (data) => {
             console.error(`Python stderr: ${data}`);
             reject(data);
         });
+
     
         pythonProcess.on('close', (code) => {
             console.log(`Python process exited with code ${code}`);
             try {
-                const jsonResult = JSON.parse(result.trim());
-                resolve(jsonResult);
+                console.log("inside closing the python process")
+                resolve(result); // Resolve with the JSON data
             } catch (error) {
                 reject(error);
             }
@@ -96,11 +98,15 @@ function retrieveByTags(input) {
 app.post('/tags', async (req, res) => {
     try {
         const result = await retrieveByTags(req.body["tags"]);
-        return res.json({ result });
+        const cleanResult = result.replace(/[\r\n]/g, ''); // Remove line breaks and carriage returns
+        const endIndex = cleanResult.indexOf(']}]') + 3; // Find the index of the first occurrence of ']}]' and include it in the result
+        const finalResult = cleanResult.substring(0, endIndex); // Extract the portion of the result up to ']}]'
+        return res.json({ finalResult }); // Return the result as response
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 
 /* GET IMAGES BY NAME FUNCTION AND ENDPOINT SETUP BELOW */
@@ -108,6 +114,7 @@ app.post('/tags', async (req, res) => {
 function retrieveByName(input) {
     return new Promise((resolve, reject) => {
         console.log("inside retrieveNames function");
+        console.log("input name: " + input)
     
         const pythonProcess = spawn('python', ['../backend/retrieveByName.py', input]);
     
