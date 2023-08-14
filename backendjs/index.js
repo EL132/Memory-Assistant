@@ -12,9 +12,10 @@ app.use(bodyParser.json());
 // LLM setup
 const topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps";
 
+
+/* BOTH LLM FUNCTION AND ENDPOINT SETUP BELOW */
 // access the LLM, passing in the user input
 function retrieveLLM(input) {
-
     return new Promise((resolve, reject) => {
         console.log("inside retrieveLLM function");
     
@@ -46,24 +47,6 @@ function retrieveLLM(input) {
     });
 }
 
-// Identify topics from the LLM response
-function identifyTopics(response) {
-    const topicsIndex = response.indexOf("Topic(s):");
-    const topicsString = response.slice(topicsIndex + 10);
-    const topicsList = topicsString.split(', ');
-    return topicsList;
-}
-
-// Identify files from the LLM response
-function identifyFiles(response) {
-    const filesIndex = response.indexOf("File(s):");
-    const filesString = response.slice(filesIndex + 9, response.indexOf("Topic(s):") - 1);
-    const filesList = filesString.split(', ');
-    return filesList;
-}
-
-// API Requests
-
 // Route to retrieve the LLM response
 app.post('/llm', async (req, res) => {
     try {
@@ -75,6 +58,118 @@ app.post('/llm', async (req, res) => {
     }
 });
 
+
+/* GET IMAGES BY TAGS FUNCTION AND ENDPOINT SETUP BELOW */
+
+function retrieveByTags(input) {
+    return new Promise((resolve, reject) => {
+        console.log(input)
+    
+        const pythonProcess = spawn('python', ['../backend/retrieveByTags.py', JSON.stringify(input)]);
+    
+        let result = '';
+    
+        pythonProcess.stdout.on('data', (data) => {
+            console.log("--------------------------------------------------------------------------------")
+            console.log(`Python stdout: ${data}`);
+            console.log("--------------------------------------------------------------------------------")
+
+            result += data.toString();
+        });
+
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`Python stderr: ${data}`);
+            reject(data);
+        });
+
+    
+        pythonProcess.on('close', (code) => {
+            console.log(`Python process exited with code ${code}`);
+            try {
+                console.log("inside closing the python process")
+                resolve(result); // Resolve with the JSON data
+            } catch (error) {
+                reject(error);
+            }
+        });
+    });
+} 
+
+app.post('/tags', async (req, res) => {
+    try {
+        const result = await retrieveByTags(req.body["tags"]);
+        const cleanResult = result.replace(/[\r\n]/g, ''); // Remove line breaks and carriage returns
+        const endIndex = cleanResult.indexOf(']}]') + 3; // Find the index of the first occurrence of ']}]' and include it in the result
+        const finalResult = cleanResult.substring(0, endIndex); // Extract the portion of the result up to ']}]'
+        return res.json({ finalResult }); // Return the result as response
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+/* GET IMAGES BY NAME FUNCTION AND ENDPOINT SETUP BELOW */
+
+function retrieveByName(input) {
+    return new Promise((resolve, reject) => {
+        console.log("inside retrieveNames function");
+        console.log("input name: " + input)
+    
+        const pythonProcess = spawn('python', ['../backend/retrieveByName.py', input]);
+    
+        let result = '';
+    
+        pythonProcess.stdout.on('data', (data) => {
+            console.log(`Python stdout: ${data}`);
+            // let messageObject = JSON.parse(data);
+            // console.log(messageObject.message);
+            result += data.toString();
+        });
+    
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`Python stderr: ${data}`);
+            reject(data);
+        });
+    
+        pythonProcess.on('close', (code) => {
+            console.log(`Python process exited with code ${code}`);
+            try {
+                const jsonResult = JSON.parse(result.trim());
+                resolve(jsonResult);
+            } catch (error) {
+                reject(error);
+            }
+        });
+    });
+} 
+
+app.post('/name', async (req, res) => {
+    try {
+        const result = await retrieveByName(req.body["name"]);
+        return res.json({ result });
+    } catch (error) {
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+
+
+
+
+
+
+
+
+
+
+/* 
 // get function for the images for the React frontend
 app.post('/get', async (req, res) => {
     console.log("get request received")
@@ -119,7 +214,4 @@ app.post('/post', (req, res) => {
     // }
     return res.json({ error: "this is a post request" });
 });
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
+*/
