@@ -16,7 +16,7 @@ cryptography==41.0.2
 dataclasses-json==0.5.13
 Django==3.2.20
 django-cors-headers==4.1.0
-dnspython==2.4.1
+dnspython==2.3.0
 et-xmlfile==1.1.0
 filetype==1.2.0
 frozenlist==1.4.0
