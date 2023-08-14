@@ -31,7 +31,7 @@ libmagic==1.0
 llama-index==0.7.14
 lxml==4.9.3
 Markdown==3.4.4
-marshmallow==3.20.1
+marshmallow==3.19.0
 msg-parser==1.2.0
 multidict==6.0.4
 mypy-extensions==1.0.0
