@@ -38,7 +38,7 @@ mypy-extensions==1.0.0
 nest-asyncio==1.5.7
 nltk==3.8.1
 numexpr==2.8.4
-numpy==1.25.1
+numpy==1.21.6
 olefile==0.46
 openai==0.27.8
 openapi-schema-pydantic==1.2.4
