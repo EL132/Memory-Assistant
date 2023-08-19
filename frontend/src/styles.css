@@ -17,7 +17,7 @@
 
 .top-right::before {
     border-radius: 0.4em;
-    border-width: 4em;
+    border-width: 4vw;
     border-right-color: #FFF6E0; 
     border-top-color: #FFF6E0;
     right: 0;
@@ -31,7 +31,7 @@
 
 .top-left::after {
     border-radius: 0.4em;
-    border-width: 4em;
+    border-width: 4vw;
     border-left-color: #FFF6E0; 
     border-top-color: #FFF6E0;
 }
