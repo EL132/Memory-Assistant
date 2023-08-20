@@ -1,12 +1,17 @@
 import './App.css';
 import React from 'react';
-import UserInput from './components/UserInput';
+import Triangles from './components/Triangles'
+import TitleCard from './components/TitleCard';
+import WhyCard from './components/WhyCard';
+import TechnologiesCard from './components/TechnologiesCard';
 
 function App() {
   return (
     <div>
-      <h1>Memory Assistant</h1>
-      <UserInput />
+      <Triangles/>
+      <TitleCard/>
+      <WhyCard/>
+      <TechnologiesCard/>
     </div>
   );
 }

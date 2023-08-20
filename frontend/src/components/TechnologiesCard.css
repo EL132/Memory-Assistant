@@ -1,0 +1,49 @@
+.technologies-images > div {
+    position: relative;
+    width: 18vw;
+    background-color: #D8D9DA;
+    border-radius: 1vw;
+}
+
+.technologies-images > div > img{
+    padding: .5vw;
+    width: 17vw;
+}
+
+.render-box {
+    top: 0;
+    left: 0;
+}
+
+.express-box {
+    top: -3vh;
+    left: 6vw;
+}
+
+.python-box {
+    top: -6vh;
+    left: 12vw;
+}
+
+.vercel-box {
+    top: -9vh;
+    left: 18vw;
+}
+
+.react-box {
+    top: -12vh;
+    left: 24vw;
+}
+
+.technologies-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15vw;
+    margin-top: 25vh;
+    margin-left: 5vw;
+}
+
+.technologies-text {
+    font-size: 4.9vw;
+    justify-content: center;
+}

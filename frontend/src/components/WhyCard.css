@@ -1,0 +1,22 @@
+.why-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: #D8D9DA;
+    margin-left: 13vw;
+    margin-right: 8vw;
+    margin-top: 30vh;
+    grid-row-gap: 1vw;
+}
+
+.why {
+    font-size: 4.9vw;
+}
+
+.why-text {
+    text-align: center;
+    font-size: 1.8vw;
+}
+
+.colored-word {
+    color: #FFF6E0;
+}
