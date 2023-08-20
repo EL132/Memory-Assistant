@@ -157,7 +157,7 @@ img {
     margin-top: 20vh;
 }
 
-.arrow {
+/* .arrow {
 	position: absolute;
 	width: 3vw;
 	height: 1vh;
@@ -225,6 +225,6 @@ img {
 .scroll-down {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center horizontally */
-    height: 100vh; /* Make the container fill the entire viewport height */
-}
+    align-items: center; 
+    height: 100vh; 
+} */
