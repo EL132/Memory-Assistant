@@ -1,0 +1,23 @@
+.title-container {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    margin-top: 28vh;
+    margin-left: 13vw;
+    margin-right: auto;
+    color: #D8D9DA;
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+    font-size: 9vw;
+}
+
+.subtitle {
+    margin: 0;
+    font-size: 1.5vw;
+    font-style: italic;
+    margin-left: 7vw;
+}
