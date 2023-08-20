@@ -43,7 +43,7 @@ body {
     margin: 0;
     padding: 0;
     color: white;
-    height: 230vh;
+    height: 340vh;
 }
 
 *{
@@ -151,7 +151,7 @@ img {
     justify-content: center;
 }
 
-.try-text {
+.try-text1 {
     font-size: 4.9vw;
     text-align: center;
     margin-top: 20vh;
@@ -228,3 +228,37 @@ img {
     align-items: center; 
     height: 100vh; 
 } */
+
+.header {
+    margin-top: 25vh;
+    width: 100vw;
+    height: 10vh;
+    background-color: #61677A;
+}
+
+.header-text {
+    font-size: 4.5vw;
+    color: #FFF6E0;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20vh;
+}
+
+.try-text2 {
+    font-size: 4.5vw;
+    text-align: center;
+    margin-top: 22vh;
+}
+
+input {
+    width: 65vw;
+    height: 25vh;
+    border-radius: 1.5vw;
+    background-color: #D8D9DA;
+    font-size: 1.5vw;
+}
+
+.input-holder {
+    display: flex;
+    justify-content: center;
+}
