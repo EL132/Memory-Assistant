@@ -14,12 +14,16 @@ function App() {
     const [response, setResponse] = useState('');
 
     const handleFormSubmit = async (inputValue) => {
+
+      console.log('[DEBUG] Handling form submission...');
+
       // Show loading screen
       setLoading(true);
       setLoadingText("testing loading text"); // Replace with your function to get a random loading phrase
 
       try {
         // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
+        console.log('[DEBUG] Making request to llm...')
         const response = await fetch('https://memoryassistant.onrender.com/name', {
           method: 'POST', 
           body: JSON.stringify({ name: inputValue }), // Adjust the payload as needed
@@ -27,7 +31,7 @@ function App() {
             'Content-Type': 'application/json',
           },
         });
-
+        console.log('[DEBUG] Successfully made request');
         const data = await response.json();
         setResponse(data); // Update state with the response data
       } catch (error) {
