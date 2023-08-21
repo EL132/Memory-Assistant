@@ -16,13 +16,13 @@ function App() {
     const handleFormSubmit = async (inputValue) => {
       // Show loading screen
       setLoading(true);
-      setLoadingText(getRandomLoadingPhrase()); // Replace with your function to get a random loading phrase
+      setLoadingText("testing loading text"); // Replace with your function to get a random loading phrase
 
       try {
-        // Make API request here using inputValue
-        const response = await fetch('https://memoryassistant.onrender.com/llm', {
+        // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
+        const response = await fetch('https://memoryassistant.onrender.com/name', {
           method: 'POST', 
-          body: JSON.stringify({ question: inputValue }), // Adjust the payload as needed
+          body: JSON.stringify({ name: inputValue }), // Adjust the payload as needed
           headers: {
             'Content-Type': 'application/json',
           },
