@@ -5,6 +5,10 @@ const { spawn } = require('child_process');
 //const Utils = require('./imageStorage');
 
 const app = express();
+app.get('/cors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    // res.send({ "msg": "This has CORS enabled 🎈" })
+})
 const port = 8000;
 
 app.use(bodyParser.json());
