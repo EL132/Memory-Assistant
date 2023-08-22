@@ -22,6 +22,12 @@
     margin-top: 40vh;
 }
 
+.gallery-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007bff;

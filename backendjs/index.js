@@ -104,7 +104,9 @@ function retrieveByTags(input) {
 
 app.post('/tags', async (req, res) => {
     try {
+        console.log("request body tags param: " + req.body["tags"])
         const result = await retrieveByTags(req.body["tags"]);
+        console.log("processed result: " + result)
         const cleanResult = result.replace(/[\r\n]/g, ''); // Remove line breaks and carriage returns
         const endIndex = cleanResult.indexOf(']}]') + 3; // Find the index of the first occurrence of ']}]' and include it in the result
         const finalResult = cleanResult.substring(0, endIndex); // Extract the portion of the result up to ']}]'
