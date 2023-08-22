@@ -3,25 +3,25 @@ import './TechnologiesCard.css';
 const TechnologiesCard = () => {
     return (
         <>
-            <div class="technologies-container">
-                <div class="technologies-images">
-                    <div class="render-box">
-                        <img class="render-img" src="./assets/render.png" alt=""></img>
+            <div className="technologies-container">
+                <div className="technologies-images">
+                    <div className="render-box">
+                        <img className="render-img" src="./assets/render.png" alt=""></img>
                     </div>
-                    <div class="express-box">
+                    <div className="express-box">
                         <img src="./assets/express.png" alt=""></img>
                     </div>
-                    <div class="python-box">
+                    <div className="python-box">
                         <img src="./assets/python.png" alt=""></img>
                     </div>
-                    <div class="vercel-box">
+                    <div className="vercel-box">
                         <img src="./assets/vercel.png" alt=""></img>
                     </div>
-                    <div class="react-box">
+                    <div className="react-box">
                         <img src="./assets/react.png" alt=""></img>
                     </div>
                 </div>
-                <p class="technologies-text">Technologies</p>
+                <p className="technologies-text">Technologies</p>
             </div>
 
         </>
