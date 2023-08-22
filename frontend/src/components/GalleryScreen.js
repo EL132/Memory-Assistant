@@ -19,7 +19,9 @@ const GalleryScreen = () => {
             const eliasResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
                 tags: ["elias", "test"]
             });
-            setEliasImages(eliasResponse.data.result);
+            setEliasImages(eliasResponse.finalResult);
+            console.log("[DEBUG] Elias's images data : ")
+            console.log(eliasResponse.data)
             console.log("[DEBUG] Elias's images: " + eliasImages)
             // setEliasImages([0, 1]);
 

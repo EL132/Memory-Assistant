@@ -110,7 +110,10 @@ app.post('/tags', async (req, res) => {
         const cleanResult = result.replace(/[\r\n]/g, ''); // Remove line breaks and carriage returns
         const endIndex = cleanResult.indexOf(']}]') + 3; // Find the index of the first occurrence of ']}]' and include it in the result
         const finalResult = cleanResult.substring(0, endIndex); // Extract the portion of the result up to ']}]'
-        return res.json({ finalResult }); // Return the result as response
+        responseData = {
+            result: finalResult
+        }
+        return responseData; // Return the result as response
     } catch (error) {
         return res.status(500).json({ error: 'Internal server error' });
     }
