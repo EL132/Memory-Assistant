@@ -1,24 +1,4 @@
 .response-screen {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin-top: 20px;
-    background-color: #f7f7f7;
-}
-
-.response-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.response-item-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.response-item-content {
-    font-size: 14px;
+    color: white;
+    font-size: 50px;
 }

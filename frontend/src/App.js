@@ -1,12 +1,14 @@
 import './App.css';
+import axios from 'axios';
 import React, { useState } from 'react';
+import WhyCard from './components/WhyCard';
 import Triangles from './components/Triangles';
 import TitleCard from './components/TitleCard';
-import WhyCard from './components/WhyCard';
-import TechnologiesCard from './components/TechnologiesCard';
 import UserInputForm from './components/UserInputForm';
 import LoadingScreen from './components/LoadingScreen';
-import ResponseScreen from './components/ResponseScreen'; // Import the ResponseScreen component
+import GalleryScreen from './components/GalleryScreen';
+import ResponseScreen from './components/ResponseScreen'; 
+import TechnologiesCard from './components/TechnologiesCard';
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -19,21 +21,24 @@ function App() {
 
       // Show loading screen
       setLoading(true);
-      setLoadingText("testing loading text"); // Replace with your function to get a random loading phrase
+      setLoadingText("Loading response..."); // Replace with your function to get a random loading phrase
 
       try {
         // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
         console.log('[DEBUG] Making request to llm...')
-        const response = await fetch('https://memoryassistant.onrender.com/name', {
-          method: 'POST', 
-          body: JSON.stringify({ name: inputValue }), // Adjust the payload as needed
-          headers: {
-            'Content-Type': 'application/json',
-          },
+        const requestData = {
+          name: inputValue
+        };
+        console.log('[DEBUG] Input value: ' + requestData.name)
+
+        // Make the Axios POST request
+        const response = await axios.post('https://memoryassistant.onrender.com/name', requestData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
         console.log('[DEBUG] Successfully made request');
-        const data = await response.json();
-        setResponse(data); // Update state with the response data
+        setResponse(response.data); // Update state with the response data
       } catch (error) {
         console.error('Error:', error);
       } finally {
@@ -56,6 +61,8 @@ function App() {
 
         {/* Render response data using the ResponseScreen component */}
         {response && <ResponseScreen response={response} />}
+
+        <GalleryScreen />
       </div>
     );
 }

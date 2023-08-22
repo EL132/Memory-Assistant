@@ -7,18 +7,8 @@ const ResponseScreen = ({ response }) => {
 
     return (
         <div className="response-screen">
-        {results.map((result, index) => (
-            <div key={index} className="result-item">
-            <img src={result.s3_url} alt={result.name} />
-            <div className="tags">
-                {result.tags.map((tag, tagIndex) => (
-                <span key={tagIndex} className="tag">
-                    {tag}
-                </span>
-                ))}
-            </div>
-            </div>
-        ))}
+            <h2>Response</h2>
+                {results[0].s3_url}
         </div>
     );
 };
