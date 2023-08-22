@@ -3,12 +3,21 @@
     width: 18vw;
     background-color: #D8D9DA;
     border-radius: 1vw;
+    transition: all 0.3s ease; /* Adding a transition for smooth animation */
 }
 
-.technologies-images > div > img{
-    padding: .5vw;
+.technologies-images > div:hover {
+    transform: scale(1.05); /* Increase size on hover */
+    z-index: 1; /* Bring the hovered box to the foreground */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Add a shadow on hover */
+    border: solid 6px black;
+}
+
+.technologies-images > div > img {
+    padding: 0.5vw;
     width: 17vw;
 }
+
 
 .render-box {
     top: 0;

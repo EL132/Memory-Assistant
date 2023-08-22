@@ -1,5 +1,5 @@
 import './GalleryScreen.css'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; // Import Axios
 
 const GalleryScreen = () => {
@@ -27,8 +27,27 @@ const GalleryScreen = () => {
         }
     };
 
+    const hiddenElementRef = useRef(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const { target, isIntersecting } = entry;
+                if (isIntersecting) {
+                    target.classList.add('show');
+                    observer.unobserve(target);
+                }
+            });
+        });
+
+        observer.observe(hiddenElementRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
     return (
-        <div className="gallery-screen">
+        <div className="gallery-screen hidden" ref={hiddenElementRef}>
             <button onClick={handleShowGallery}>
                 {showGallery ? 'Hide the gallery' : 'Show me the gallery'}
             </button>
