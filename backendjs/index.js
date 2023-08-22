@@ -5,6 +5,7 @@ const { spawn } = require('child_process');
 //const Utils = require('./imageStorage');
 
 const app = express();
+port = 8000
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -161,9 +162,9 @@ app.post('/name', async (req, res) => {
 
 
 
-// app.listen(port, () => {
-//     console.log(`Server is running on render backend hosting`);
-// });
+app.listen(port, () => {
+    console.log(`Server is running on render backend hosting`);
+});
 
 
 
