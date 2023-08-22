@@ -16,7 +16,6 @@ function App() {
     const [response, setResponse] = useState('');
 
     const handleFormSubmit = async (inputValue) => {
-
       console.log('[DEBUG] Handling form submission...');
 
       // Show loading screen

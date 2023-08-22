@@ -1,25 +1,27 @@
 import './GalleryScreen.css'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; // Import Axios
 
 const GalleryScreen = () => {
     const [showGallery, setShowGallery] = useState(false);
-    const [devOneImages, setDevOneImages] = useState([]);
-    const [devTwoImages, setDevTwoImages] = useState([]);
+    const [fevinImages, setFevinImages] = useState([]);
+    const [eliasImages, setEliasImages] = useState([]);
 
     const handleShowGallery = async () => {
         try {
-            // const devOneResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
-            //     tags: ['devOne']
-            // });
-            // // setDevOneImages(devOneResponse.data.result);
-            setDevOneImages([0, 1]);
+            const fevinResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
+                tags: ["fevin", "grape"]
+            });
+            setFevinImages(fevinResponse.data.result);
+            console.log("[DEBUG] Fevin's images: " + fevinImages)
+            // setFevinImages([0, 1]);
 
-            // const devTwoResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
-            //     tags: ['devTwo']
-            // });
-            // setDevTwoImages(devTwoResponse.data.result);
-            setDevTwoImages([0, 1]);
+            const eliasResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
+                tags: ["elias", "test"]
+            });
+            setEliasImages(eliasResponse.data.result);
+            console.log("[DEBUG] Elias's images: " + eliasImages)
+            // setEliasImages([0, 1]);
 
             setShowGallery(!showGallery);
         } catch (error) {
@@ -27,8 +29,27 @@ const GalleryScreen = () => {
         }
     };
 
+    const hiddenElementRef = useRef(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const { target, isIntersecting } = entry;
+                if (isIntersecting) {
+                    target.classList.add('show');
+                    observer.unobserve(target);
+                }
+            });
+        });
+
+        observer.observe(hiddenElementRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
     return (
-        <div className="gallery-screen">
+        <div className="gallery-screen hidden" ref={hiddenElementRef}>
             <button onClick={handleShowGallery}>
                 {showGallery ? 'Hide the gallery' : 'Show me the gallery'}
             </button>
@@ -36,17 +57,17 @@ const GalleryScreen = () => {
             {showGallery && (
                 <div className="gallery-content">
                     <div className="dev-images">
-                        <h2>Developer One's Images</h2>
-                        {devOneImages.map((image, index) => (
-                            <img key={index} src={image.s3_url} alt={image.name} />
-                        ))}
+                        <h2>Fevin's Images</h2>
+                        {/* {fevinImages.map((image) => (
+                            <img src={image.s3_url} alt={image.name} />
+                        ))} */}
                     </div>
 
                     <div className="dev-images">
-                        <h2>Developer Two's Images</h2>
-                        {devTwoImages.map((image, index) => (
-                            <img key={index} src={image.s3_url} alt={image.name} />
-                        ))}
+                        <h2>Elias's Images</h2>
+                        {/* {eliasImages.map((image, index) => (
+                            <img src={image.s3_url} alt={image.name} />
+                        ))} */}
                     </div>
                 </div>
             )}
