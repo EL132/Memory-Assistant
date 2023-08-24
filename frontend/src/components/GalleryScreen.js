@@ -1,31 +1,61 @@
 import './GalleryScreen.css'
-import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; // Import Axios
+import React, { useState, useEffect, useRef } from 'react';
+import LoadingScreen from './LoadingScreen';
 
 const GalleryScreen = () => {
     const [showGallery, setShowGallery] = useState(false);
     const [fevinImages, setFevinImages] = useState([]);
     const [eliasImages, setEliasImages] = useState([]);
+    const [loadingImages, setLoadingImages] = useState(false);
+
 
     const handleShowGallery = async () => {
+        if (showGallery) {
+            setShowGallery(false);
+            return;
+        } else if (fevinImages.length > 0 && eliasImages.length > 0) {
+            setShowGallery(true);
+            return;
+        }
+
+        setLoadingImages(true); // Set loading state to true
         try {
             const fevinResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
-                tags: ["fevin", "grape"]
+                tags: ["fevin"]
             });
-            setFevinImages(fevinResponse.data.result);
-            console.log("[DEBUG] Fevin's images: " + fevinImages)
-            // setFevinImages([0, 1]);
+            
+            const fevImageObjects = fevinResponse.data.finalResult.slice(1, -1).split("}, {");
+
+            // Extract s3_url values from each object and create an array
+            const fevs3Urls = fevImageObjects.map(object => {
+                const s3UrlMatch = object.match(/'s3_url':\s*'([^']+)'/);
+                if (s3UrlMatch && s3UrlMatch.length > 1) {
+                    return s3UrlMatch[1];
+                }
+                return null;
+            }).filter(url => url !== null);
+            setFevinImages(fevs3Urls);
+            console.log('[DEBUG] Fevin images: ' + fevs3Urls)
 
             const eliasResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
-                tags: ["elias", "test"]
+                tags: ["elias"]
             });
-            setEliasImages(eliasResponse.finalResult);
-            console.log("[DEBUG] Elias's images data : ")
-            console.log(eliasResponse.data)
-            console.log("[DEBUG] Elias's images: " + eliasImages)
-            // setEliasImages([0, 1]);
+            const eliasImageObjects = eliasResponse.data.finalResult.slice(1, -1).split("}, {");
+
+            // Extract s3_url values from each object and create an array
+            const eliass3Urls = eliasImageObjects.map(object => {
+                const s3UrlMatch = object.match(/'s3_url':\s*'([^']+)'/);
+                if (s3UrlMatch && s3UrlMatch.length > 1) {
+                    return s3UrlMatch[1];
+                }
+                return null;
+            }).filter(url => url !== null);
+            setEliasImages(eliass3Urls);
+            console.log('[DEBUG] Elias images: ' + eliass3Urls)
 
             setShowGallery(!showGallery);
+            setLoadingImages(false); // Set loading state to false
         } catch (error) {
             console.error('Error fetching images:', error);
         }
@@ -55,26 +85,38 @@ const GalleryScreen = () => {
             <button onClick={handleShowGallery}>
                 {showGallery ? 'Hide the gallery' : 'Show me the gallery'}
             </button>
-
-            {showGallery && (
-                <div className="gallery-content">
-                    <div className="dev-images">
-                        <h2>Fevin's Images</h2>
-                        {/* {fevinImages.map((image) => (
-                            <img src={image.s3_url} alt={image.name} />
-                        ))} */}
+    
+            {loadingImages ? (
+                <LoadingScreen loadingText="Loading images..." />
+            ) : (
+                showGallery && (
+                    <div className="gallery-content">
+                        <div className="dev-images">
+                            <h2>Fevin's Images</h2>
+                            {fevinImages.map((url, index) => (
+                                <img
+                                    key={index}
+                                    src={url}
+                                    alt="db element"
+                                />
+                            ))}
+                        </div>
+    
+                        <div className="dev-images">
+                            <h2>Elias's Images</h2>
+                            {eliasImages.map((url, index) => (
+                                <img
+                                    key={index}
+                                    src={url}
+                                    alt="db element"
+                                />
+                            ))}
+                        </div>
                     </div>
-
-                    <div className="dev-images">
-                        <h2>Elias's Images</h2>
-                        {/* {eliasImages.map((image, index) => (
-                            <img src={image.s3_url} alt={image.name} />
-                        ))} */}
-                    </div>
-                </div>
+                )
             )}
         </div>
-    );
+    );    
 };
 
 export default GalleryScreen;
