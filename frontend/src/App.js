@@ -31,7 +31,7 @@ function App() {
         console.log('[DEBUG] Input value: ' + requestData.name)
 
         // Make the Axios POST request
-        const response = await axios.post('https://memoryassistant.onrender.com/name', requestData, {
+        const response = await axios.post('https://memoryassistant.onrender.com/llm/', requestData, {
             headers: {
                 'Content-Type': 'application/json',
             },
