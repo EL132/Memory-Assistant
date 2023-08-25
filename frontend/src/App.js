@@ -9,6 +9,7 @@ import LoadingScreen from './components/LoadingScreen';
 import GalleryScreen from './components/GalleryScreen';
 import ResponseScreen from './components/ResponseScreen'; 
 import TechnologiesCard from './components/TechnologiesCard';
+import TryItButton from './components/TryItButton';
 
 function App() {
     const [loading, setLoading] = useState(false);
@@ -81,6 +82,8 @@ function App() {
         <TitleCard />
         <WhyCard />
         <TechnologiesCard />
+
+        <TryItButton />
 
         <UserInputForm onSubmit={handleFormSubmit} />
 
