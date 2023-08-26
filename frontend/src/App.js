@@ -3,15 +3,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-import WhyCard from './components/WhyCard';
-import Triangles from './components/Triangles';
-import TitleCard from './components/TitleCard';
-import UserInputForm from './components/UserInputForm';
-import LoadingScreen from './components/LoadingScreen';
-import GalleryScreen from './components/GalleryScreen';
-import ResponseScreen from './components/ResponseScreen'; 
-import TechnologiesCard from './components/TechnologiesCard';
-import TryItButton from './components/TryItButton';
 import Home from './components/Home';
 
 function App() {
@@ -86,7 +77,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route index element={<Home />} />
         </Routes>
-        
+
       </div>  
     );
 }
