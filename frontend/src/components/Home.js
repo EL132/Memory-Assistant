@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import transition from '../transition';
 
 import WhyCard from './WhyCard';
 import Triangles from './Triangles';

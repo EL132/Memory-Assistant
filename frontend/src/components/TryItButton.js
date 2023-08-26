@@ -1,6 +1,7 @@
 import './TryItButton.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
+import transition from '../transition';
 
 const TryItButton = () => {
     const navigate = useNavigate();
@@ -15,4 +16,4 @@ const TryItButton = () => {
     );
 };
 
-export default TryItButton;
+export default transition(TryItButton);

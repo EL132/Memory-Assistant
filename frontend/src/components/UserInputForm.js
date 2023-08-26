@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './UserInputForm.css';
+import transition from '../transition';
 
 const UserInputForm = ({ onSubmit }) => {
     const [inputValue, setInputValue] = useState('');
@@ -52,4 +53,4 @@ const UserInputForm = ({ onSubmit }) => {
     );
 };
 
-export default UserInputForm;
+export default transition(UserInputForm);
