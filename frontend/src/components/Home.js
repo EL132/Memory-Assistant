@@ -1,20 +1,20 @@
-import './App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-import WhyCard from './components/WhyCard';
-import Triangles from './components/Triangles';
-import TitleCard from './components/TitleCard';
-import UserInputForm from './components/UserInputForm';
-import LoadingScreen from './components/LoadingScreen';
-import GalleryScreen from './components/GalleryScreen';
-import ResponseScreen from './components/ResponseScreen'; 
-import TechnologiesCard from './components/TechnologiesCard';
-import TryItButton from './components/TryItButton';
-import Home from './components/Home';
+import WhyCard from './WhyCard';
+import Triangles from './Triangles';
+import TitleCard from './TitleCard';
+import UserInputForm from './UserInputForm';
+import LoadingScreen from './LoadingScreen';
+import GalleryScreen from './GalleryScreen';
+import ResponseScreen from './ResponseScreen'; 
+import TechnologiesCard from './TechnologiesCard';
+import TryItButton from './TryItButton';
 
-function App() {
+
+
+const Home= () => {
     const [loading, setLoading] = useState(false);
     const [loadingText, setLoadingText] = useState('');
     const [response, setResponse] = useState('');
@@ -79,16 +79,27 @@ function App() {
         setLoadingText('');
       }
     };
-
     return (
-      <div>
-        
-        <Routes location={location} key={location.pathname}>
-          <Route index element={<Home />} />
-        </Routes>
-        
-      </div>  
-    );
-}
+        <>
+            <div className="home-container">
+                <Triangles />
+                <TitleCard />
+                <WhyCard />
+                <TechnologiesCard />
 
-export default App;
+                <TryItButton />
+
+                <UserInputForm onSubmit={handleFormSubmit} />
+
+                {loading && <LoadingScreen loadingText={loadingText} />}
+
+                {/* Render response data using the ResponseScreen component */}
+                {response && <ResponseScreen response={response} imagesResponse={imagesResponse}/>}
+
+                <GalleryScreen />
+            </div>
+        </>
+    );
+};
+
+export default Home;
