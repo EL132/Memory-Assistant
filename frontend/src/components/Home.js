@@ -90,14 +90,10 @@ const Home= () => {
 
                 <TryItButton />
 
-                <UserInputForm onSubmit={handleFormSubmit} />
-
                 {loading && <LoadingScreen loadingText={loadingText} />}
 
                 {/* Render response data using the ResponseScreen component */}
                 {response && <ResponseScreen response={response} imagesResponse={imagesResponse}/>}
-
-                <GalleryScreen />
             </div>
         </>
     );
