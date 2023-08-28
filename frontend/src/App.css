@@ -36,3 +36,10 @@ body {
   background: #0f0f0f;
   transform-origin: top;
 }
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
