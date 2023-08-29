@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
 import './UserInputForm.css';
 import transition from '../transition';
+import React, { useState } from 'react';
 
 const UserInputForm = ({ onSubmit }) => {
     const [inputValue, setInputValue] = useState('');
@@ -15,31 +15,12 @@ const UserInputForm = ({ onSubmit }) => {
         onSubmit(inputValue);
     };
 
-    const hiddenElementRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const { target, isIntersecting } = entry;
-                if (isIntersecting) {
-                    target.classList.add('show');
-                    observer.unobserve(target);
-                }
-            });
-        });
-
-        observer.observe(hiddenElementRef.current);
-
-        return () => {
-            observer.disconnect();
-        };
-    }, []);
 
     return (
         <div className="input-form-container">
-            <div className="user-input-form hidden" ref={hiddenElementRef}>
+            <div className="user-input-form">
                 <div>
-                    testing text for input form
+                    Ask away!
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"
@@ -52,7 +33,6 @@ const UserInputForm = ({ onSubmit }) => {
                 </div>
             </div>
         </div>
-       
     );
 };
 

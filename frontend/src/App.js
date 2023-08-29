@@ -1,12 +1,13 @@
 import './App.css';
 import axios from 'axios';
-import React, { useState } from 'react';
-import {Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from "framer-motion";
-
-import ScrollToTop from './components/ScrollToTop';
 import Home from './components/Home';
+import React, { useState } from 'react';
+import { AnimatePresence } from "framer-motion";
+import ScrollToTop from './components/ScrollToTop';
 import UserInputForm from './components/UserInputForm';
+import LoadingScreen from './components/LoadingScreen';
+import ResponseScreen from './components/ResponseScreen';
+import {Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
   const location = useLocation();
@@ -78,10 +79,16 @@ function App() {
     <div>
       <ScrollToTop />
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/try-it" element={<div className='input'> <UserInputForm onSubmit={handleFormSubmit} /> </div>} />
-        </Routes>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/try-it" element={
+          <div>
+            <UserInputForm onSubmit={handleFormSubmit} />
+            {/* Conditionally render LoadingScreen or ResponseScreen based on loading state */}
+            {loading ? <LoadingScreen text={loadingText} /> : <ResponseScreen response={response} imagesResponse={imagesResponse} />}
+          </div>} />
+      </Routes>
+
       </AnimatePresence>
     </div>  
   );
