@@ -35,6 +35,10 @@
     border: solid 6px black;
 }
 
+.technologies-images > div > img {
+    width: 100%;
+}
+
 /* Positioning for the X shape layout */
 .python-box {
     grid-column: 2;

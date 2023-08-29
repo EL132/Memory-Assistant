@@ -9,6 +9,7 @@
 
 .try-it-button {
     width: 15vw;
-    height: 10vhvh;
+    height: 10vh;
     font-size: 30px;
+    font-weight: 800;
 }
