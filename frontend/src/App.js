@@ -12,7 +12,6 @@ import {Routes, Route, useLocation } from 'react-router-dom';
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
-  const [loadingText, setLoadingText] = useState('');
   const [response, setResponse] = useState('');
   const [imagesResponse, setImagesResponse] = useState('');
 
@@ -21,7 +20,6 @@ function App() {
 
     // Show loading screen
     setLoading(true);
-    setLoadingText("Loading response..."); // Replace with your function to get a random loading phrase
 
     try {
       // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
@@ -71,7 +69,6 @@ function App() {
     } finally {
       // Hide loading screen
       setLoading(false);
-      setLoadingText('');
     }
   };
 
@@ -85,7 +82,7 @@ function App() {
           <div>
             <UserInputForm onSubmit={handleFormSubmit} />
             {/* Conditionally render LoadingScreen or ResponseScreen based on loading state */}
-            {loading ? <LoadingScreen text={loadingText} /> : <ResponseScreen response={response} imagesResponse={imagesResponse} />}
+            {loading ? <LoadingScreen /> : <ResponseScreen response={response} imagesResponse={imagesResponse} />}
           </div>} />
       </Routes>
 

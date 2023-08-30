@@ -49,6 +49,10 @@ const ResponseScreen = ({ response, imagesResponse }) => {
                         ))}
                     </div>
                 )}
+                <div className="response-section">
+                    {/* Display your response and images here */}
+                    <button onClick={() => window.location.reload()}>Ask Another Question</button>
+                </div>
             </div>
         );
     }
