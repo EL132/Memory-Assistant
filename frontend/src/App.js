@@ -1,6 +1,7 @@
 import './App.css';
 import axios from 'axios';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import React, { useState } from 'react';
 import { AnimatePresence } from "framer-motion";
 import ScrollToTop from './components/ScrollToTop';
@@ -81,8 +82,8 @@ function App() {
         <Route path="/try-it" element={
           <div>
             <UserInputForm onSubmit={handleFormSubmit} />
-            {/* Conditionally render LoadingScreen or ResponseScreen based on loading state */}
             {loading ? <LoadingScreen /> : <ResponseScreen response={response} imagesResponse={imagesResponse} />}
+            <Footer />
           </div>} />
       </Routes>
 

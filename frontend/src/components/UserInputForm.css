@@ -9,7 +9,46 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 43vh 30vw;
+    height: 25vh;
+    margin: 37.5vh 30vw;
+    color: black;
+}
+
+h1 {
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.title-banner {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.title {
+    font-size: 6vh;
+}
+
+.prompt {
+    height: 10vh;
+    width: 30vw;
+}
+
+.submit-button {
+    height: 5vh;
+    width: 10vw;
+    margin-top: 2vh;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 2vh;
+    cursor: pointer;
+    margin: 0 10vw;
 }
 
 .hidden {
@@ -21,5 +60,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 
