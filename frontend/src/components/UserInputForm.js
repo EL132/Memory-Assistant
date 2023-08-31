@@ -19,19 +19,20 @@ const UserInputForm = ({ onSubmit }) => {
 
     return (
         <div className='input-form-container'>
+            <div className="title-banner">
+                <h1>Memory Assistant</h1>   
+            </div>
             <div className='user-input-form'>
-                <div>
-                    Ask away!
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            placeholder="Enter your prompt..."
-                            value={inputValue}
-                            onChange={handleInputChange}
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+                <div className="title">Ask away!</div>
+                <form onSubmit={handleSubmit}>
+                    <textarea className="prompt"
+                        type="text"
+                        placeholder="Enter your prompt..."
+                        value={inputValue}
+                        onChange={handleInputChange}
+                    />
+                    <button className="submit-button" type="submit">Submit</button>
+                </form>
             </div>
         </div>
     );

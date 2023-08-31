@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 import WhyCard from './WhyCard';
 import Triangles from './Triangles';
 import TitleCard from './TitleCard';
@@ -18,6 +19,8 @@ const Home= () => {
                 <TechnologiesCard />
 
                 <TryItButton />
+
+                <Footer />
             </div>
         </>
     );
