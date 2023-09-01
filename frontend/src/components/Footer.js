@@ -37,6 +37,24 @@ const Footer = () => {
                 </div>
                 <div class="fevin-content">
                     <h3 class="fevin name">Fevin</h3>
+                    <div class="link-container">
+                        <div class="website-image">
+                            <img src="./assets/website.png" alt="" class="icon"></img>
+                        </div>
+                        <div class="website-link"><a href="https://www.linkedin.com/in/fevinfelix/">Personal Website</a></div>
+                    </div>
+                    <div class="link-container">
+                        <div class="linkedin-image">
+                            <img src="./assets/linkedin.png" alt="" class="icon"></img>
+                        </div>
+                        <div class="linkedin-link"><a href="https://www.linkedin.com/in/fevinfelix/">LinkedIn</a></div>
+                    </div>
+                    <div class="link-container">
+                        <div class="github-image">
+                            <img src="./assets/github.png" alt="" class="icon"></img>
+                        </div>
+                        <div class="github-link"><a href="https://github.com/FevinFelix">GitHub</a></div>
+                    </div>
                 </div>
             </div>
 
