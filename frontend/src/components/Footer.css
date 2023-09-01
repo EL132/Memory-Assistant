@@ -3,6 +3,9 @@
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-content {
@@ -13,3 +16,38 @@
 .footer p {
     margin: 0;
 }
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.documentation-container {
+    display: flex;
+    align-items: center;
+}
+
+.elias-content {
+    align-items: center;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-bottom: 5px;
+}
+
+.doc-png {
+    width: 2vw;
+    height: auto;
+}
+
+a {
+    color: #D8D9DA;
+}
+
+.icon {
+    height: 1.1em;
+}
+
