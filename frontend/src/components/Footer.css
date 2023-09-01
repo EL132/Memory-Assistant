@@ -17,14 +17,25 @@
     margin: 0;
 }
 
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+}
+
 .documentation-container {
     display: flex;
     align-items: center;
 }
 
-.footer-container {
+.elias-content {
+    align-items: center;
+}
+
+.link-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 3px;
+    margin-bottom: 5px;
 }
 
 .doc-png {
@@ -34,5 +45,9 @@
 
 a {
     color: #D8D9DA;
+}
+
+.icon {
+    height: 1.1em;
 }
 
