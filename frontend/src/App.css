@@ -1,9 +1,9 @@
 /* App.css */
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body {
-  background-color: #272829;
-  font-family: Lato, sans-serif;
+  background-color: white;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   color: white;

@@ -1,47 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+.title-banner {
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    align-items: center;
+    justify-content: center;
+    font-weight: 200;
+    font-size: 4vh;
+    height: 7vh;
+    width: 100%;
+    background-color: #fea858;
+}
+
+.example-blurbs {
+    display: flex;
+    font-size: 2vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 70vw;
+}
+
+.example-question {
+    margin: 4vh 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 2vw;
+    border-radius: 10px;
+    background-color: rgb(254, 168, 88, 0.56);
+    height: 5vh;
+}
+
+.example-response {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.example-answer-text {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    padding: 2vw;
+    border-radius: 10px;
+    background-color: rgb(228, 228, 228, 0.56);
+}
+
+.image-section {
+    width: 45%;
+}
+
+.example-response img {
+    width: 100%;
+    height: 90%;
+    border: 4px solid #000; /* Add a 2px solid black border around the image */
+}
+
+
+.arrow-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/* Default arrow styles */
+.arrow {
+    width: 60px;
+    height: 30px;
+    font-size: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s; 
+}
+
+.left-arrow {
+    margin-right: 20px; 
+}
+
+.right-arrow {
+    margin-left: 20px; 
+}
+
+.arrow:hover {
+    color: #fea858; 
+}
+
+
 .user-input-form {
+    height: 40vh;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    height: 25vh;
-    margin: 37.5vh 30vw;
-    color: black;
-}
-
-h1 {
-    font-size: 4.5rem;
-    margin-bottom: 20px;
-    color: black;
-}
-
-.title-banner {
-    text-align: center;
-    width: 100%;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     color: black;
 }
 
 .title {
-    font-size: 6vh;
+    font-size: 4vh;
+    margin: 10vh 0 5vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .prompt {
     height: 10vh;
-    width: 30vw;
+    margin-bottom: 4vh;
+    width: 100%;
+    padding: 2vw;
+    border-radius: 10px;
+    background-color: rgb(228, 228, 228, 0.56);
 }
 
 .submit-button {
     height: 5vh;
     width: 10vw;
-    margin-top: 2vh;
+    margin: 4vh 0;
     background-color: #4CAF50;
     color: white;
     border: none;

@@ -11,7 +11,7 @@ const TryItButton = () => {
 
     return (
         <div className="try-it-container">
-            <button className="try-it-button" type="button" onClick={redirectToOtherPage}>Try It Yourself!</button>
+            <button className="try-it-button" type="button" onClick={redirectToOtherPage}>Try it now &rarr;</button>
         </div>
     );
 };
