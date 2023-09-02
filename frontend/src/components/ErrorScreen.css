@@ -1,0 +1,19 @@
+
+.error-screen-container {
+    display: flex;
+    justify-content: center
+    
+}
+
+.error-img {
+    width: 50vw;
+}
+
+.error-container {
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 4vh;
+}
