@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import React, { useState } from 'react';
 import { AnimatePresence } from "framer-motion";
 import ScrollToTop from './components/ScrollToTop';
+import ErrorScreen from './components/ErrorScreen';
 import UserInputForm from './components/UserInputForm';
 import LoadingScreen from './components/LoadingScreen';
 import ResponseScreen from './components/ResponseScreen';
@@ -14,6 +15,7 @@ function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState('');
+  const [errorPage, setErrorPage] = useState(false); 
   const [imagesResponse, setImagesResponse] = useState('');
 
   const handleFormSubmit = async (inputValue) => {
@@ -67,6 +69,8 @@ function App() {
       }
     } catch (error) {
       console.error('Error:', error);
+      // Update errorPage state using a callback function
+      setErrorPage(true);
     } finally {
       // Hide loading screen
       setLoading(false);
@@ -84,6 +88,8 @@ function App() {
             {
               loading ? (
                 <LoadingScreen />
+              ) : errorPage ? (
+                <ErrorScreen />
               ) : response ? (
                 <ResponseScreen response={response} imagesResponse={imagesResponse} />
               ) : (
