@@ -1,5 +1,6 @@
 .footer {
-    background-color: #333;
+    background-color: black;
+    z-index: 4;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -32,8 +33,9 @@
 }
 
 .link-container {
+    margin-top: 5px;
+    font-size: 2vh;
     display: flex;
-    justify-content: center;
     gap: 3px;
     margin-bottom: 5px;
 }

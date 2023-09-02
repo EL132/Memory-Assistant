@@ -81,8 +81,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/try-it" element={
           <div>
-            <UserInputForm onSubmit={handleFormSubmit} />
-            {loading ? <LoadingScreen /> : <ResponseScreen response={response} imagesResponse={imagesResponse} />}
+            {
+              loading ? (
+                <LoadingScreen />
+              ) : response ? (
+                <ResponseScreen response={response} imagesResponse={imagesResponse} />
+              ) : (
+                <UserInputForm onSubmit={handleFormSubmit} />
+              )
+            }
             <Footer />
           </div>} />
       </Routes>
