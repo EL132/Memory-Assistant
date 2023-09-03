@@ -1,4 +1,23 @@
 .response-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reload-button {
+    margin: 10vh;
+    width: 14vw;
+    height: 7vh;
+    border-radius: 5px;
+    border: none;
+    background-color: #fea858;
     color: black;
-    font-size: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#response-image {
+    height: 100%;
 }
