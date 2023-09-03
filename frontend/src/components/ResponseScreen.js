@@ -5,24 +5,23 @@ import UserInputForm from './UserInputForm';
 const ResponseScreen = ({ question, response, imagesResponse }) => {
     const imagesAvailable = imagesResponse && imagesResponse.finalResult;
     const [index, setIndex] = useState(0);
+    const [imageArray, setImageArray] = useState([]);
 
     const handleLeftArrowClick = () => {
         if (index === 0) {
-            setIndex(example_images.length - 1); // Loop to the last image if at the beginning
+            setIndex(imageArray.length - 1); // Loop to the last image if at the beginning
         } else {
             setIndex(index - 1);
         }
     };
 
     const handleRightArrowClick = () => {
-        if (index === example_images.length - 1) {
+        if (index === imageArray.length - 1) {
             setIndex(0); // Loop to the first image if at the end
         } else {
             setIndex(index + 1);
         }
     };
-
-    let example_images = ['./assets/example-image.jpg', './assets/example-image-1.jpg', './assets/example-image-2.jpg']
 
     if (imagesAvailable) {
         // Extract the result array from the response
@@ -51,6 +50,7 @@ const ResponseScreen = ({ question, response, imagesResponse }) => {
         }).filter(url => url !== null);
 
         console.log('Array of s3_urls:', s3Urls);
+        setImageArray(s3Urls);
 
 
         // return (
@@ -87,13 +87,13 @@ const ResponseScreen = ({ question, response, imagesResponse }) => {
                     </div>
                     <div className="example-response">
                         <div className="example-answer-text">
-                            {response}
+                            {extractedText}
                         </div>
                         <div className="image-section">
-                            <img src={example_images[index]} alt="notes-page" />
+                            <img src={imageArray[index]} alt="notes-page" />
                             <div className="arrow-container">
-                                <div className="arrow left-arrow" onClick={handleLeftArrowClick}>&larr;</div>
-                                <div className="arrow right-arrow" onClick={handleRightArrowClick}>&rarr;</div>
+                                <div className="arrow left-arrow" onClick={() => handleLeftArrowClick}>&larr;</div>
+                                <div className="arrow right-arrow" onClick={() => handleRightArrowClick}>&rarr;</div>
                             </div>
                         </div>
                     </div>
