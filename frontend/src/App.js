@@ -14,6 +14,7 @@ import {Routes, Route, useLocation } from 'react-router-dom';
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [question, setQuestion] = useState('')
   const [response, setResponse] = useState('');
   const [errorPage, setErrorPage] = useState(false); 
   const [imagesResponse, setImagesResponse] = useState('');
@@ -23,6 +24,9 @@ function App() {
 
     // Show loading screen
     setLoading(true);
+
+    // Store the question that was asked
+    setQuestion(inputValue)
 
     try {
       // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
@@ -91,9 +95,14 @@ function App() {
               ) : errorPage ? (
                 <ErrorScreen />
               ) : response ? (
-                <ResponseScreen response={response} imagesResponse={imagesResponse} />
+                <ResponseScreen question={question} response={response} imagesResponse={imagesResponse} />
               ) : (
-                <UserInputForm onSubmit={handleFormSubmit} />
+                <div>
+                  <div className="title-banner">
+                    <h6>Elix Devs</h6>   
+                  </div>
+                  <UserInputForm onSubmit={handleFormSubmit} />
+                </ div>
               )
             }
             <Footer />
