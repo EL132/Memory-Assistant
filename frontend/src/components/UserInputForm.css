@@ -134,6 +134,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    margin-top: 10vh;
+    margin-top: 0vh;
+    margin-bottom: 10vh;
 }
 

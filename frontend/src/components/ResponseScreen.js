@@ -87,9 +87,7 @@ const ResponseScreen = ({ question, response, imagesResponse }) => {
                     </div>
                     <div className="example-response">
                         <div className="example-answer-text">
-                            Linked lists consists of nodes where each node contains a data field and a reference(link) to the next node in the list.
-                            <br></br><br></br>
-                            Yes, you have taken notes on them in the past. See related documents. Click along the arrows to see other related documents.
+                            {response}
                         </div>
                         <div className="image-section">
                             <img src={example_images[index]} alt="notes-page" />
