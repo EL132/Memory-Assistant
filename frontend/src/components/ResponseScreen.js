@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ResponseScreen.css';
+import UserInputForm from './UserInputForm';
 
-const ResponseScreen = ({ response, imagesResponse }) => {
+const ResponseScreen = ({ question, response, imagesResponse }) => {
     const imagesAvailable = imagesResponse && imagesResponse.finalResult;
+    const [index, setIndex] = useState(0);
+    const [imageArray, setImageArray] = useState([]);
+
+    const handleLeftArrowClick = () => {
+        if (index === 0) {
+            setIndex(imageArray.length - 1); // Loop to the last image if at the beginning
+        } else {
+            setIndex(index - 1);
+        }
+    };
+
+    const handleRightArrowClick = () => {
+        if (index === imageArray.length - 1) {
+            setIndex(0); // Loop to the first image if at the end
+        } else {
+            setIndex(index + 1);
+        }
+    };
 
     if (imagesAvailable) {
         // Extract the result array from the response
@@ -31,28 +50,56 @@ const ResponseScreen = ({ response, imagesResponse }) => {
         }).filter(url => url !== null);
 
         console.log('Array of s3_urls:', s3Urls);
+        setImageArray(s3Urls);
 
+
+        // return (
+        //     <div className="response-screen">
+        //         <h2>Response</h2>
+        //         {extractedText}
+        //         <h2>File(s):</h2>
+        //         {s3Urls.length > 0 && (
+        //             <div className="image-container">
+        //                 {s3Urls.map((url, index) => (
+        //                     <img
+        //                         key={index}
+        //                         src={url}
+        //                         alt="db element"
+        //                     />
+        //                 ))}
+        //             </div>
+        //         )}
+        //         <div className="response-section">
+        //             {/* Display your response and images here */}
+        //             <button onClick={() => window.location.reload()}>Ask Another Question</button>
+        //         </div>
+        //     </div>
+        // );
 
         return (
-            <div className="response-screen">
-                <h2>Response</h2>
-                {extractedText}
-                <h2>File(s):</h2>
-                {s3Urls.length > 0 && (
-                    <div className="image-container">
-                        {s3Urls.map((url, index) => (
-                            <img
-                                key={index}
-                                src={url}
-                                alt="db element"
-                            />
-                        ))}
-                    </div>
-                )}
-                <div className="response-section">
-                    {/* Display your response and images here */}
-                    <button onClick={() => window.location.reload()}>Ask Another Question</button>
+            <div className='input-form-container'>
+                <div className="title-banner">
+                    <h6>Elix Devs</h6>   
                 </div>
+                <div className="example-blurbs">
+                    <div className="example-question">
+                        {question}
+                    </div>
+                    <div className="example-response">
+                        <div className="example-answer-text">
+                            {extractedText}
+                        </div>
+                        <div className="image-section">
+                            <img src={imageArray[index]} alt="notes-page" />
+                            <div className="arrow-container">
+                                <div className="arrow left-arrow" onClick={() => handleLeftArrowClick}>&larr;</div>
+                                <div className="arrow right-arrow" onClick={() => handleRightArrowClick}>&rarr;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <UserInputForm />
             </div>
         );
     }

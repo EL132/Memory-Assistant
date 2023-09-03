@@ -22,7 +22,7 @@ ret = (query_engine.query(input + f"In addition, please also print out which of 
             "For the topic of the question, please start that response with 'Topic(s):' and return the topic or topics separated by commas.\
                 For example, 'heaps, trees, stacks' or 'Queues' would both be valid responses to have after 'Topic(s):'." +
             "For the name or names of relevant files, please start that response with 'File(s)' and follow the same comma separated approach as for 'Topic(s):'." +
-            "Put the response to the question first, then the 'File(s)', and finally the 'Topic(s)'."))
+            "Put the response to the question first, then the 'File(s)', and finally the 'Topic(s)'. + 'if you don't know the answer, just say you don't know."))
 # prompt currently isn't returning all used file names. It only returned the Hashmap_notes.pdf when asked a question about trees and hashmaps combined.
 
 result = {"llm_response": str(ret)}

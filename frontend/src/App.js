@@ -14,15 +14,38 @@ import {Routes, Route, useLocation } from 'react-router-dom';
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [question, setQuestion] = useState('')
   const [response, setResponse] = useState('');
   const [errorPage, setErrorPage] = useState(false); 
   const [imagesResponse, setImagesResponse] = useState('');
+  const [index, setIndex] = useState(0);
+
+  const handleLeftArrowClick = () => {
+      if (index === 0) {
+          setIndex(example_images.length - 1); // Loop to the last image if at the beginning
+      } else {
+          setIndex(index - 1);
+      }
+  };
+
+  const handleRightArrowClick = () => {
+      if (index === example_images.length - 1) {
+          setIndex(0); // Loop to the first image if at the end
+      } else {
+          setIndex(index + 1);
+      }
+  };
+
+  let example_images = ['./assets/example-image.jpg', './assets/example-image-1.jpg', './assets/example-image-2.jpg']
 
   const handleFormSubmit = async (inputValue) => {
     console.log('[DEBUG] Handling form submission...');
 
     // Show loading screen
     setLoading(true);
+
+    // Store the question that was asked
+    setQuestion(inputValue)
 
     try {
       // NOTE: THIS IS CURRENTLY QUERYING THE NAME AND NOT THE LLM
@@ -91,9 +114,33 @@ function App() {
               ) : errorPage ? (
                 <ErrorScreen />
               ) : response ? (
-                <ResponseScreen response={response} imagesResponse={imagesResponse} />
+                <ResponseScreen question={question} response={response} imagesResponse={imagesResponse} />
               ) : (
-                <UserInputForm onSubmit={handleFormSubmit} />
+                <div className="try-it-screen">
+                  <div className="title-banner">
+                    <h6>Elix Devs</h6>   
+                  </div>
+                  <div className="example-blurbs">
+                    <div className="example-question">
+                      What are linked lists and have I taken any notes on them?
+                    </div>
+                    <div className="example-response">
+                        <div className="example-answer-text">
+                            Linked lists consists of nodes where each node contains a data field and a reference(link) to the next node in the list.
+                            <br></br><br></br>
+                            Yes, you have taken notes on them in the past. See related documents. Click along the arrows to see other related documents.
+                        </div>
+                        <div className="image-section">
+                            <img src={example_images[index]} alt="notes-page" />
+                            <div className="arrow-container">
+                                <div className="arrow left-arrow" onClick={handleLeftArrowClick}>&larr;</div>
+                                <div className="arrow right-arrow" onClick={handleRightArrowClick}>&rarr;</div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <UserInputForm className="input-form" onSubmit={handleFormSubmit} />
+                </ div>
               )
             }
             <Footer />

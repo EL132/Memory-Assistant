@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 
-.title-banner {
-    display: flex;
-    font-family: 'Inter', sans-serif;
-    align-items: center;
-    justify-content: center;
-    font-weight: 200;
-    font-size: 4vh;
-    height: 7vh;
-    width: 100%;
-    background-color: #fea858;
-}
-
 .example-blurbs {
     display: flex;
     font-size: 2vh;
@@ -92,7 +80,7 @@
 
 .user-input-form {
     height: 40vh;
-    width: 70vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -117,7 +105,7 @@
 .prompt {
     height: 10vh;
     margin-bottom: 4vh;
-    width: 100%;
+    width: 70vw;
     padding: 2vw;
     border-radius: 10px;
     background-color: rgb(228, 228, 228, 0.56);
@@ -146,5 +134,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
+    margin-top: 0vh;
+    margin-bottom: 10vh;
 }
 

@@ -43,3 +43,22 @@ body {
   justify-content: center;
   height: 100vh;
 }
+
+.title-banner {
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+  font-size: 4vh;
+  height: 10vh;
+  width: 100%;
+  background-color: #fea858;
+}
+
+.try-it-screen {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
