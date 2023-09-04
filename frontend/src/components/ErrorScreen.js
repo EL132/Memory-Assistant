@@ -1,12 +1,15 @@
 import React from 'react';
-import './ErrorScreen.css'
+import './ErrorScreen.css';
+import { Link } from 'react-router-dom';
 
 const ErrorScreen = () => {
     return (
         <div className="error-screen">
-            <div className="title-banner">
-                <h6>Elix Devs</h6>   
-            </div>
+            <Link to="/" className="title-banner">
+                <div >
+                    <h6>Elix Devs</h6>
+                </div>
+            </Link>
             <div className="error-screen-container">
                 <div className="error-container">
                     <img src="./assets/error.svg" alt="" className="error-img"></img>

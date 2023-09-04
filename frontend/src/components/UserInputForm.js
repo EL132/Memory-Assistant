@@ -1,6 +1,7 @@
 import './UserInputForm.css';
 import transition from '../transition';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const UserInputForm = ({ onSubmit }) => {
     const [inputValue, setInputValue] = useState('');
@@ -37,18 +38,20 @@ const UserInputForm = ({ onSubmit }) => {
 
     return (
         <div className='input-form-container'>
-            <div className="title-banner">
-                <h6>Elix Devs</h6>   
-            </div>
+            <Link to="/" className="title-banner">
+                <div >
+                    <h6>Elix Devs</h6>
+                </div>
+            </Link>
             <div className="example-blurbs">
                 <div className="example-question">
-                    What are linked lists and have I taken any notes on them?
+                    What are linked lists?
                 </div>
                 <div className="example-response">
                 <div className="example-answer-text">
                     Linked lists consists of nodes where each node contains a data field and a reference(link) to the next node in the list.
                     <br></br><br></br>
-                    Yes, you have taken notes on them in the past. See related documents. Click along the arrows to see other related documents.
+                    You have taken notes on them in the past. See related documents. Click along the arrows to see other related documents.
                 </div>
                 <div className="image-section">
                     <img src={example_images[index]} alt="notes-page" />
@@ -63,7 +66,7 @@ const UserInputForm = ({ onSubmit }) => {
                 <form className="form" onSubmit={handleSubmit}>
                     <textarea className="prompt"
                         type="text"
-                        placeholder="Enter your prompt..."
+                        placeholder="Enter your prompt and the LLM will return the most relevant documents..."
                         value={inputValue}
                         onChange={handleInputChange}
                     />

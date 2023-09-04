@@ -54,6 +54,8 @@ body {
   height: 10vh;
   width: 100%;
   background-color: #fea858;
+  text-decoration: none;
+  color: white;
 }
 
 .try-it-screen {

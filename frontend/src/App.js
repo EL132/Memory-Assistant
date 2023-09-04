@@ -56,17 +56,21 @@ function App() {
           const topics = result.substring(topicIndex).split(":")[1].trim();
           const tags = topics.split(",").map(tag => tag.trim());
 
-          console.log('[DEBUG] Tags: ' + tags)
-          console.log("[DEBUG] Tags :")
-          console.log(tags)
-          console.log('[DEBUG] Tags type: ' + typeof(tags))
-          // Make the API request to get images
+          console.log("[DEBUG] Tags:");
+          console.log(tags);
+
+          const sanitizedTags = tags.map(tag => tag.replace(/\./g, ''));
+
+          console.log("[DEBUG] Sanitized Tags:");
+          console.log(sanitizedTags);
+
+          // Make the API request to get images with sanitized tags
           const imagesResponse = await axios.post('https://memoryassistant.onrender.com/tags', {
-              tags: tags
+              tags: sanitizedTags
           });
 
           console.log('[DEBUG] Images response: ')
-          console.log(imagesResponse)
+          console.log(imagesResponse.data)
 
           // Update state with the image data
           setImagesResponse(imagesResponse.data);

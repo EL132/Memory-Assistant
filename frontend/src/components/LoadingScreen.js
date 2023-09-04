@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import './LoadingScreen.css';
+import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 const LoadingScreen = () => {
     const loadingPhrases = [
@@ -47,9 +48,11 @@ const LoadingScreen = () => {
 
     return (
         <div className="loading-screen">
-            <div className="title-banner">
-                <h6>Elix Devs</h6>   
-            </div>
+            <Link to="/" className="title-banner">
+                <div >
+                    <h6>Elix Devs</h6>
+                </div>
+            </Link>
             <div className="loading-content">
                 <img src="./assets/LoadingImage2.gif" alt="Loading" />
                 <p>{loadingText}</p>
