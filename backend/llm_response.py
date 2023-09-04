@@ -11,7 +11,8 @@ documents = SimpleDirectoryReader('../backend/mysite/training_data').load_data()
 
 index = GPTVectorStoreIndex(documents)
 query_engine = index.as_query_engine()
-topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps, Matrices, Two Pointers, Sliding Windows, Prefix Sums, Graphs, Tries, Recursion"
+topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps, Matrices, Two Pointers,\
+      Sliding Windows, Prefix Sums, Graphs, Tries, Recursion, Searching and Sorting, Intervals"
 input = str(sys.argv[1])
 
 ret = (query_engine.query(input + f"In addition, please also print out which of the following topics this question falls under:\{topics}." + 

@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 // LLM setup
-const topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps";
+const topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps, Matrices, Two Pointers, Sliding Windows, Prefix Sums, Graphs, Tries, Recursion, Searching and Sorting, Intervals";
 
 
 /* BOTH LLM FUNCTION AND ENDPOINT SETUP BELOW */
