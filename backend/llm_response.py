@@ -2,14 +2,22 @@ import json
 # LLM imports 
 import os, sys
 import openai
-from llama_index import SimpleDirectoryReader, GPTVectorStoreIndex
+from llama_index import VectorStoreIndex, SimpleDirectoryReader, ServiceContext
+from llama_index.llms import OpenAI
 
 #openai.api_key = ""
 openai.api_key = os.getenv("OPENAI_API_KEY") # THIS DOES NOT WORK
+# Instantiate the OpenAI model and customize it
+llm = OpenAI(temperature=0.1, model="gpt-3.5")
+
+# Create a ServiceContext with the customized LLM
+service_context = ServiceContext.from_defaults(llm=llm)
 
 documents = SimpleDirectoryReader('../backend/mysite/training_data').load_data()
 
-index = GPTVectorStoreIndex(documents)
+# Create an index using the ServiceContext with the customized LLM
+index = VectorStoreIndex.from_documents(documents, service_context=service_context)
+
 query_engine = index.as_query_engine()
 topics = "Hashmaps, Trees, Linked Lists, Arrays, Strings, Stacks, Queues, Heaps, Matrices, Two Pointers,\
       Sliding Windows, Prefix Sums, Graphs, Tries, Recursion, Searching and Sorting, Intervals"
