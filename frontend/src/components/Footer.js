@@ -40,7 +40,7 @@ const Footer = () => {
                         <div className="website-image">
                             <img src="./assets/website.png" alt="" className="icon"></img>
                         </div>
-                        <div className="website-link"><a target="_blank" href="https://www.linkedin.com/in/fevinfelix/" rel="noreferrer">Personal Website</a></div>
+                        <div className="website-link"><a target="_blank" href="https://fevin-felix.vercel.app/" rel="noreferrer">Personal Website</a></div>
                     </div>
                     <div className="link-container">
                         <div className="linkedin-image">
